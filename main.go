@@ -21,15 +21,15 @@ func main() {
 						Name:   "inspect",
 						Action: wad.Inspect,
 						Flags: []cli.Flag{
-							&cli.StringFlag{Name: "in", TakesFile: true, Required: true},
+							&cli.StringFlag{Name: "in", Usage: "path to the WAD file", TakesFile: true, Required: true},
 						},
 					},
 					{
 						Name:   "unpack",
 						Action: wad.Unpack,
 						Flags: []cli.Flag{
-							&cli.StringFlag{Name: "in", TakesFile: true, Required: true},
-							&cli.StringFlag{Name: "out", Required: true},
+							&cli.StringFlag{Name: "in", Usage: "path to the WAD file", TakesFile: true, Required: true},
+							&cli.StringFlag{Name: "out", Usage: "directory to extract contents to", Required: true},
 						},
 					},
 				},
