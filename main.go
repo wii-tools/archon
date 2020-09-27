@@ -32,6 +32,14 @@ func main() {
 							&cli.StringFlag{Name: "out", Usage: "directory to extract contents to", Required: true},
 						},
 					},
+					{
+						Name:   "pack",
+						Action: wad.Pack,
+						Flags: []cli.Flag{
+							&cli.StringFlag{Name: "in", Usage: "directory to extract contents to", Required: true},
+							&cli.StringFlag{Name: "out", Usage: "path to output the WAD", Required: true},
+						},
+					},
 				},
 			},
 		},
