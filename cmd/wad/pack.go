@@ -98,7 +98,7 @@ func Pack(c *cli.Context) error {
 	wadfiles := make([]wadlib.WADFile, len(wad.TMD.Contents))
 	for index, content := range wad.TMD.Contents {
 		// Read the data file listed.
-		data, err := dir.readFile(fmt.Sprintf("%08x.app", content.ID))
+		data, err := dir.readFile(fmt.Sprintf("%08x.app", content.Index))
 		if err != nil {
 			return err
 		}

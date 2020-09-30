@@ -70,7 +70,7 @@ func Unpack(c *cli.Context) error {
 	}
 
 	// Nor does the CRL section, by default.
-	if len(wad.Meta) != 0 {
+	if len(wad.CertificateRevocationList) != 0 {
 		err = dir.writeSection("crl", wad.CertificateRevocationList)
 		if err != nil {
 			return err
