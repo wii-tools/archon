@@ -30,6 +30,7 @@ func main() {
 						Flags: []cli.Flag{
 							&cli.StringFlag{Name: "in", Usage: "path to the WAD file", TakesFile: true, Required: true},
 							&cli.StringFlag{Name: "out", Usage: "directory to extract contents to", Required: true},
+							&cli.BoolFlag{Name: "no-decrypt", Usage: "if specified, does not decrypted WAD contents"},
 						},
 					},
 					{
