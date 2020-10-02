@@ -97,8 +97,16 @@ func Pack(c *cli.Context) error {
 	// These should be exactly the same as what is listed within the TMD.
 	wadfiles := make([]wadlib.WADFile, len(wad.TMD.Contents))
 	for index, content := range wad.TMD.Contents {
+		// We default to reading by the index.
+		value := 0
+		if c.Bool("id") {
+			value = int(content.ID)
+		} else {
+			value = int(content.Index)
+		}
+
 		// Read the data file listed.
-		data, err := dir.readFile(fmt.Sprintf("%08x.app", content.Index))
+		data, err := dir.readFile(fmt.Sprintf("%08x.app", value))
 		if err != nil {
 			return err
 		}

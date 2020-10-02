@@ -17,8 +17,14 @@ type directory struct {
 }
 
 // writeContents writes contents to the content's index within a directory.
-func (d *directory) writeContents(content wadlib.WADFile) error {
-	name := fmt.Sprintf("%08x.app", content.Index)
+func (d *directory) writeContents(content wadlib.WADFile, byId bool) error {
+	// We default to reading by the index.
+	name := ""
+	if byId {
+		name = fmt.Sprintf("%08x.app", content.ID)
+	} else {
+		name = fmt.Sprintf("%08x.app", content.Index)
+	}
 	return d.writeFile(name, content.RawData)
 }
 

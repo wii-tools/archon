@@ -88,7 +88,7 @@ func Unpack(c *cli.Context) error {
 			}
 		}
 
-		err = dir.writeContents(content)
+		err = dir.writeContents(content, c.Bool("id"))
 		if err != nil {
 			return err
 		}

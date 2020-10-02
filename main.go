@@ -31,6 +31,7 @@ func main() {
 							&cli.StringFlag{Name: "in", Usage: "path to the WAD file", TakesFile: true, Required: true},
 							&cli.StringFlag{Name: "out", Usage: "directory to extract contents to", Required: true},
 							&cli.BoolFlag{Name: "no-decrypt", Usage: "if specified, does not decrypted WAD contents"},
+							&cli.BoolFlag{Name: "id", Usage: "name contents by ID, instead of index"},
 						},
 					},
 					{
@@ -39,6 +40,7 @@ func main() {
 						Flags: []cli.Flag{
 							&cli.StringFlag{Name: "in", Usage: "directory to extract contents to", Required: true},
 							&cli.StringFlag{Name: "out", Usage: "path to output the WAD", Required: true},
+							&cli.BoolFlag{Name: "id", Usage: "read contents by ID, instead of index"},
 						},
 					},
 				},
