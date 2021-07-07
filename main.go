@@ -2,6 +2,7 @@ package main
 
 import (
 	"github.com/urfave/cli/v2"
+	"github.com/wii-tools/archon/cmd/arc"
 	"github.com/wii-tools/archon/cmd/wad"
 	"log"
 	"os"
@@ -41,6 +42,27 @@ func main() {
 							&cli.StringFlag{Name: "in", Usage: "directory to extract contents to", Required: true},
 							&cli.StringFlag{Name: "out", Usage: "path to output the WAD", Required: true},
 							&cli.BoolFlag{Name: "id", Usage: "read contents by ID, instead of index"},
+						},
+					},
+				},
+			},
+			{
+				Name: "u8",
+				Usage: "U8 archive related operations",
+				Subcommands: []*cli.Command{
+					{
+						Name: "inspect",
+						Action: arc.Inspect,
+						Flags: []cli.Flag{
+							&cli.StringFlag{Name: "in", Usage: "path to the U8 archive", TakesFile: true, Required: true},
+						},
+					},
+					{
+						Name: "extract",
+						Action: arc.Extract,
+						Flags: []cli.Flag{
+							&cli.StringFlag{Name: "in", Usage: "path to the U8 archive", TakesFile: true, Required: true},
+							&cli.StringFlag{Name: "out", Usage: "path to where you want to extract", Required: true},
 						},
 					},
 				},
