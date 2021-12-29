@@ -96,7 +96,8 @@ func Pack(c *cli.Context) error {
 	// Next up: data contents.
 	// These should be exactly the same as what is listed within the TMD.
 	wadfiles := make([]wadlib.WADFile, len(wad.TMD.Contents))
-	for index, content := range wad.TMD.Contents {
+	wad.Data = wadfiles
+	for _, content := range wad.TMD.Contents {
 		// We default to reading by the index.
 		value := 0
 		if c.Bool("id") {
@@ -111,12 +112,7 @@ func Pack(c *cli.Context) error {
 			return err
 		}
 
-		wadfiles[index] = wadlib.WADFile{
-			ContentRecord: content,
-			RawData:       data,
-		}
-
-		err = wadfiles[index].EncryptData(wad.Ticket.TitleKey)
+		err = wad.UpdateContent(int(content.Index), data)
 		if err != nil {
 			return err
 		}

@@ -80,15 +80,22 @@ func Unpack(c *cli.Context) error {
 	// We'll then write all contents listed.
 	shouldDecrypt := !c.Bool("no-decrypt")
 	for _, content := range wad.Data {
+		var contents []byte
+		record := *content.Record
+
 		// First, decrypt.
 		if shouldDecrypt {
-			err := content.DecryptData(wad.Ticket.TitleKey)
+			data, err := wad.GetContent(int(record.Index))
 			if err != nil {
-				return err
+				panic(err)
 			}
+
+			contents = data
+		} else {
+			contents = content.RawData
 		}
 
-		err = dir.writeContents(content, c.Bool("id"))
+		err = dir.writeContents(contents, record, c.Bool("id"))
 		if err != nil {
 			return err
 		}
